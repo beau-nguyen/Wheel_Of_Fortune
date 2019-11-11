@@ -14,6 +14,8 @@ var chartMargin = {
 var chartWidth = svgWidth - chartMargin.left - chartMargin.right;
 var chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
 
+
+
 // Select body, append SVG area to it, and set the dimensions
 var svg = d3.select("body")
   .append("svg")
@@ -60,6 +62,8 @@ d3.csv("Letter.csv", function(error, tvData) {
     .attr("transform", `translate(0, ${chartHeight})`)
     .call(bottomAxis);
 
+  
+
   // Create one SVG rectangle per piece of tvData
   // Use the linear and band scales to position each rectangle within the chart
   chartGroup.selectAll(".bar")
@@ -71,5 +75,6 @@ d3.csv("Letter.csv", function(error, tvData) {
     .attr("y", d => yLinearScale(d.Count))
     .attr("width", xBandScale.bandwidth())
     .attr("height", d => chartHeight - yLinearScale(d.Count));
+    
 
 });
