@@ -25,9 +25,9 @@ var models = [
   });
   
   var container = d3.select('#d3id'),
-      width = 500,
-      height = 300,
-      margin = {top: 30, right: 20, bottom: 30, left: 50},
+      width = 800,
+      height = 600,
+      margin = {top: 150, right: 50, bottom: 30, left: 150},
       barPadding = .2,
       axisTicks = {qty: 5, outerSize: 0, dateFormat: '%m-%d'};
   

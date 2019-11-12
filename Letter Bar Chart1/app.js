@@ -22,6 +22,7 @@ var svg = d3.select("body")
   .attr("height", svgHeight)
   .attr("width", svgWidth);
 
+
 // Append a group to the SVG area and shift ('translate') it to the right and to the bottom
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
