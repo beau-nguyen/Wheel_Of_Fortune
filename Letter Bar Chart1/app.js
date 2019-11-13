@@ -1,6 +1,6 @@
 // Define SVG area dimensions
-var svgWidth = 960;
-var svgHeight = 660;
+var svgWidth = 500;
+var svgHeight = 400;
 
 // Define the chart's margins as an object
 var chartMargin = {
@@ -76,18 +76,5 @@ d3.csv("Letter.csv", function(error, tvData) {
     .attr("y", d => yLinearScale(d.Count))
     .attr("width", xBandScale.bandwidth())
     .attr("height", d => chartHeight - yLinearScale(d.Count));
-
-    // now add titles to the axes
-    chartGroup.append("text")
-    .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
-    .attr("transform", "translate("+ (padding/2) +","+(height/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
-    .text("ExampleY");
-
-    chartGroup.append("text")
-    .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
-    .attr("transform", "translate("+ (width/2) +","+(height-(padding/3))+")")  // centre below axis
-    .text("ExampleX");
     
-
-});
- 
+}); 

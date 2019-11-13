@@ -1,78 +1,96 @@
 
-// Define SVG area dimensions
-var svgWidth = 960;
-var svgHeight = 660;
-
-// Define the chart's margins as an object
-var chartMargin = {
-  top: 30,
-  right: 30,
-  bottom: 30,
-  left: 30
+dataset = {
+  "children": [{"Name":"Thing","Count":14285},
+      {"Name":"Food and Drink","Count":8490},
+      {"Name":"What Are You Doing","Count":6509},
+      {"Name":"Phrase","Count":6300},
+      {"Name":"Place","Count":4613},
+      {"Name":"Event","Count":3478},
+      {"Name":"Proper Name","Count":3461},
+      {"Name":"People","Count":2432},
+      {"Name":"Person","Count":2224},
+      {"Name":"Before and After","Count":2128},
+      {"Name":"Fictional Character","Count":1882},
+      {"Name":"Around the House","Count":1556},
+      {"Name":"On the Map","Count":1396},
+      {"Name":"Landmark","Count":1183},
+      {"Name":"Movie Title","Count":1165},
+      {"Name":"Title","Count":1114},
+      {"Name":"Show Biz","Count":1111},
+      {"Name":"Fun and Games","Count":1071},
+      {"Name":"Same Game","Count":962}]
 };
 
-// Define dimensions of the chart area
-var chartWidth = svgWidth - chartMargin.left - chartMargin.right;
-var chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
 
-// Select body, append SVG area to it, and set the dimensions
-var svg = d3.select("body")
+
+var diameter = 400;
+var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+var bubble = d3.pack(dataset)
+  .size([diameter, diameter])
+  .padding(1.5);
+
+var svg = d3.select("#myAreaChart1")
   .append("svg")
-  .attr("height", svgHeight)
-  .attr("width", svgWidth);
+  // .attr("width", diameter)
+  .attr("width", diameter)
+  .attr("height", diameter)
+  .attr("class", "bubble");
 
-// Append a group to the SVG area and shift ('translate') it to the right and to the bottom
-var chartGroup = svg.append("g")
-  .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
+var nodes = d3.hierarchy(dataset)
+  .sum(function(d) { return d.Count; });
 
-// Load data from hours-of-tv-watched.csv
-d3.csv("Letter.csv", function(error, tvData) {
-  if (error) throw error;
-
-  console.log(tvData);
-
-  // Cast the hours value to a number for each piece of tvData
-  tvData.forEach(function(d) {
-    d.Count = +d.Count;
+var node = svg.selectAll(".node")
+  .data(bubble(nodes).descendants())
+  .enter()
+  .filter(function(d){
+      return  !d.children
+  })
+  .append("g")
+  .attr("class", "node")
+  .attr("transform", function(d) {
+      return "translate(" + d.x + "," + d.y + ")";
   });
 
-  // Configure a band scale for the horizontal axis with a padding of 0.1 (10%)
-  var xBandScale = d3.scaleBand()
-    .domain(tvData.map(d => d.Letter))
-    .range([0, chartWidth])
-    .padding(0.1);
+node.append("title")
+  .text(function(d) {
+      return d.Name + ": " + d.Count;
+  });
 
-  // Create a linear scale for the vertical axis.
-  var yLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(tvData, d => d.Count)])
-    .range([chartHeight, 0]);
+node.append("circle")
+  .attr("r", function(d) {
+      return d.r;
+  })
+  .style("fill", function(d,i) {
+      return color(i);
+  });
 
-  // Create two new functions passing our scales in as arguments
-  // These will be used to create the chart's axes
-  var bottomAxis = d3.axisBottom(xBandScale);
-  var leftAxis = d3.axisLeft(yLinearScale).ticks(10);
+node.append("text")
+  .attr("dy", ".2em")
+  .style("text-anchor", "middle")
+  .text(function(d) {
+      return d.data.Name.substring(0, d.r / 3);
+  })
+  .attr("font-family", "sans-serif")
+  .attr("font-size", function(d){
+      return d.r/5;
+  })
+  .attr("fill", "white");
 
-  // Append two SVG group elements to the chartGroup area,
-  // and create the bottom and left axes inside of them
-  chartGroup.append("g")
-    .call(leftAxis);
+node.append("text")
+  .attr("dy", "1.3em")
+  .style("text-anchor", "middle")
+  .text(function(d) {
+      return d.data.Count;
+  })
+  .attr("font-family",  "Gill Sans", "Gill Sans MT")
+  .attr("font-size", function(d){
+      return d.r/5;
+  })
+  .attr("fill", "white");
 
-  chartGroup.append("g")
-    .attr("transform", `translate(0, ${chartHeight})`)
-    .call(bottomAxis);
+d3.select(self.frameElement)
+  .style("height", diameter + "px");
 
-  // Create one SVG rectangle per piece of tvData
-  // Use the linear and band scales to position each rectangle within the chart
-  chartGroup.selectAll(".bar")
-    .data(tvData)
-    .enter()
-    .append("rect")
-    .attr("class", "bar")
-    .attr("x", d => xBandScale(d.Letter))
-    .attr("y", d => yLinearScale(d.Count))
-    .attr("width", xBandScale.bandwidth())
-    .attr("height", d => chartHeight - yLinearScale(d.Count));
-
-});
 
 
