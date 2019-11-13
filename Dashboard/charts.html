@@ -37,7 +37,8 @@
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search"
+          aria-describedby="basic-addon2">
         <div class="input-group-append">
           <button class="btn btn-primary" type="button">
             <i class="fas fa-search"></i>
@@ -49,27 +50,30 @@
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
       <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-bell fa-fw"></i>
-     
+
         </a>
-    
+
       </li>
       <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-envelope fa-fw"></i>
-       
+
         </a>
-    
+
         </div>
       </li>
       <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
 
-    
+
         </div>
       </li>
     </ul>
@@ -87,14 +91,14 @@
         </a>
       </li>
       <li class="nav-item dropdown">
-        
+
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
       </li>
-      
+
     </ul>
 
     <div id="content-wrapper">
@@ -116,61 +120,60 @@
             Area Chart Example</div>
           <div class="card-body">
             <canvas id="myAreaChart" width="100%" height="30"></canvas>
-           
 
-              
-        <div class="row">
-          <div class="col-lg-8">
-            <div class="card mb-3">
-              <div class="card-header">
-                <i class="fas fa-chart-bar"></i>
 
-                Bar Chart Example</div>
-              <div class="card-body">
-                <canvas id="myBarChart" width="100%" height="50"></canvas>
+
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="card mb-3">
+                  <div class="card-header">
+                    <i class="fas fa-chart-bar"></i>
+
+                    Bar Chart Example</div>
+                  <div class="card-body">
+                    <canvas id="myBarChart" width="100%" height="50"></canvas>
+                  </div>
+                  <div id="d3id"></div>
+
+                </div>
               </div>
-              <div id="d3id" ></div>
-  
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="card mb-3">
-              <div class="card-header">
-                <i class="fas fa-chart-pie"></i>
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="card mb-3">
+                    <div class="card-header">
+                      <i class="fas fa-chart-bar"></i>
 
-                Pie Chart Example</div>
-              <div class="card-body">
-                <canvas id="myPieChart" width="100%" height="100"></canvas>
-              </div>
-             
-        </div>
+                      Pie Chart Example</div>
+                    <div class="card-body">
+                      <canvas id="myBarChart" width="100%" height="50"></canvas>
+                    </div>
+                    <div id="d2id"></div>
 
-        </p>
+                  </div>
+                </div>
 
-      </div>
+                <!-- Scroll to Top Button-->
+                <a class="scroll-to-top rounded" href="#page-top">
+                  <i class="fas fa-angle-up"></i>
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
+                  <!-- Bootstrap core JavaScript-->
+                  <script src="vendor/jquery/jquery.min.js"></script>
+                  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                  <!-- Core plugin JavaScript-->
+                  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+                  <!-- Page level plugin JavaScript-->
+                  <script src="vendor/chart.js/Chart.min.js"></script>
 
-  <!-- Page level plugin JavaScript-->
-  <script src="vendor/chart.js/Chart.min.js"></script>
+                  <!-- Custom scripts for all pages-->
+                  <script src="js/sb-admin.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin.min.js"></script>
+                  <!-- Demo scripts for this page-->
+                  <script src="js/demo/chart-area-demo.js"></script>
+                  <script src="js/demo/chart-bar-demo.js"></script>
+                  <script src="js/demo/chart-pie-demo.js"></script>
 
-  <!-- Demo scripts for this page-->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-bar-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
-  
 
 </body>
 
